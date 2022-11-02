@@ -1,0 +1,10 @@
+Mission: Space Weather Follow On-Lagrange 1 (SWFO)
+Instruments:
+  Fluxgate Magnetometer (FGM):
+    examples: b_field
+    levels: l2
+    datatypes: flux, eflux
+  SupraThermal Ion Sensor (STIS):
+    examples: swfo_stis_eflux, swfo_stis_flux
+    levels: l1, l2 (default)
+Default trange: ['2025-11-5', '2025-11-6']
