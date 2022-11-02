@@ -1,4 +1,4 @@
-# pyspedas-add-mission
+# pyspedas-add-project
 This project allows you to generate the initial code for a load routine in PySPEDAS. 
 
 Example input:
