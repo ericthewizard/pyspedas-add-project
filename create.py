@@ -17,7 +17,7 @@ def api_request(prompt, num_tokens):
         top_p=1.0,
         frequency_penalty=0.0,
         presence_penalty=0.0,
-        best_of=5
+        best_of=1
     )
     output = response['choices'][0]['text']
     if '-=======-' in output:
@@ -26,7 +26,7 @@ def api_request(prompt, num_tokens):
     return output
 
 
-def create(input='test.yaml', directory='/Users/eric/pyspedas-add-mission/'):
+def create(input='test.yaml', directory='/Users/eric/pyspedas-add-project/'):
     with open(input, 'r') as f:
         project = yaml.safe_load(f)
 
@@ -56,7 +56,7 @@ def create(input='test.yaml', directory='/Users/eric/pyspedas-add-mission/'):
     logging.info('Creating load.py...')
     file = open('templates/load.py', 'r').read()
 
-    num_tokens = 3000
+    num_tokens = 800
 
     prompt = """
     Mission: Colorado Student Space Weather Experiment (CSSWE)
@@ -99,7 +99,7 @@ def create(input='test.yaml', directory='/Users/eric/pyspedas-add-mission/'):
     """ + example_text + """
     Markdown:
     """
-    output = api_request(prompt, 2000)
+    output = api_request(prompt, 800)
     with open(os.path.join(out_dir, 'README.md'), 'w') as f:
         f.write(output)
 
@@ -114,7 +114,7 @@ def create(input='test.yaml', directory='/Users/eric/pyspedas-add-mission/'):
     Mission: """ + mission + """
     Python:
     """
-    output = api_request(prompt, 500)
+    output = api_request(prompt, 200)
     with open(os.path.join(out_dir, 'config.py'), 'w') as f:
         f.write(output)
 
@@ -133,7 +133,7 @@ def create(input='test.yaml', directory='/Users/eric/pyspedas-add-mission/'):
     trange = """ + default_trange + """
     Python:
     """
-    output = api_request(prompt, 3000)
+    output = api_request(prompt, 800)
     with open(os.path.join(test_dir, 'tests.py'), 'w') as f:
         f.write(output)
 
@@ -161,7 +161,7 @@ def create(input='test.yaml', directory='/Users/eric/pyspedas-add-mission/'):
             prompt += "levels: " + project['Instruments'][instrument]['levels'] + "\n"
 
         prompt += "Python:\n"
-        output = api_request(prompt, 3000)
+        output = api_request(prompt, 1000)
         out += output + '\n\n'
 
     with open(os.path.join(out_dir, '__init__.py'), 'w') as f:
